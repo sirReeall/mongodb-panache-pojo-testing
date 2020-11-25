@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - ci-testing
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          tags: sirreeall/ci-testing:latest
+          file: ./Dockerfile.multistage
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
