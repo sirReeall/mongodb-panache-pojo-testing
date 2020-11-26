@@ -15,7 +15,7 @@ public class PersonResourceTest {
           .when().get("/persons")
           .then()
              .statusCode(200)
-             .body(is("hello"));
+             .body(is("hello world, you are awesome!"));
     }
 
 }
